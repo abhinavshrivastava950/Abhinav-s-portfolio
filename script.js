@@ -1,3 +1,9 @@
+// Force page to top on reload so boot sequence isn't scrolled past
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+window.scrollTo(0, 0);
+
 const posterRig = document.querySelector("[data-poster]");
 const poster = document.querySelector(".portrait-scene");
 const heroShell = document.querySelector(".hero-shell");
