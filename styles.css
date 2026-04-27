@@ -31,6 +31,20 @@ html {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(107, 33, 255, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--violet);
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -778,12 +792,14 @@ main {
   position: relative;
   border: 1px solid var(--line-soft);
   background:
+    radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 84, 255, 0.12), transparent 40%),
     linear-gradient(135deg, rgba(139, 84, 255, 0.15), transparent 33%),
     linear-gradient(315deg, rgba(83, 220, 255, 0.12), transparent 35%),
     var(--panel);
   backdrop-filter: blur(18px);
   clip-path: polygon(18px 0, calc(100% - 22px) 0, 100% 22px, 100% calc(100% - 22px), calc(100% - 22px) 100%, 18px 100%, 0 calc(100% - 18px), 0 18px);
-  box-shadow: 0 0 28px rgba(139, 84, 255, 0.18);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.08), inset -1px -1px 0 rgba(255, 255, 255, 0.02), 0 0 28px rgba(139, 84, 255, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .hud-card::before,
@@ -1117,12 +1133,14 @@ main {
 [data-reveal] {
   opacity: 0;
   transform: translateY(28px) scale(0.985);
-  transition: opacity 720ms ease, transform 720ms ease;
+  filter: blur(12px);
+  transition: opacity 720ms ease, transform 720ms ease, filter 720ms ease;
 }
 
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
 
 @keyframes bootBar {

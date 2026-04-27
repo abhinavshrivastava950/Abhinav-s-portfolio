@@ -144,6 +144,16 @@ document.querySelectorAll(".magnetic").forEach((element) => {
   });
 });
 
+document.querySelectorAll(".hud-card, .project-card, .connect-panel, .glass-card").forEach((card) => {
+  card.addEventListener("pointermove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  });
+});
+
 const initCanvas = () => {
   if (!canvas || reducedMotion) return;
   const ctx = canvas.getContext("2d");
