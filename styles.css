@@ -461,8 +461,8 @@ main {
   transform-origin: center;
   transition: transform 180ms ease;
   pointer-events: auto;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 35%, black 0%, black 50%, rgba(0, 0, 0, 0.7) 75%, transparent 100%);
-  mask-image: radial-gradient(ellipse at 50% 35%, black 0%, black 50%, rgba(0, 0, 0, 0.7) 75%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 95%);
+  mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 95%);
 }
 
 .portrait-scene::before,
@@ -484,9 +484,7 @@ main {
 
 .portrait-scene::after {
   z-index: 6;
-  background:
-    radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(4, 1, 10, 0.1) 60%, rgba(4, 1, 10, 0.8) 90%),
-    linear-gradient(180deg, rgba(4, 1, 10, 0), transparent 45%, rgba(4, 1, 10, 0.6) 75%, var(--bg) 98%);
+  background: linear-gradient(180deg, rgba(4, 1, 10, 0), transparent 50%, rgba(4, 1, 10, 0.7) 75%, var(--bg) 98%);
 }
 
 .portrait-bg,
