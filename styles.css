@@ -864,18 +864,21 @@ main {
 
 .mini-stats div {
   min-height: 104px;
-  display: grid;
-  place-items: center;
-  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   text-align: center;
+  padding: 16px 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .mini-stats strong {
-  margin: 0;
+  margin: 0 0 4px 0;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
   line-height: 1;
+  white-space: nowrap;
 }
 
 .mini-stats span {
