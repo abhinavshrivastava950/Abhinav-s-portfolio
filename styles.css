@@ -74,6 +74,69 @@ canvas {
   position: fixed;
   inset: 0;
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Custom Cursor */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, .magnetic {
+    cursor: none;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: var(--violet);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px var(--violet);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 32px; height: 32px;
+  border: 1px solid var(--violet-2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s ease-out;
+}
+
+.cursor-dot.hovered {
+  background: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan);
+}
+
+.cursor-ring.hovered {
+  width: 48px;
+  height: 48px;
+  border-color: var(--cyan);
+  background: rgba(0, 229, 255, 0.05);
+}
+
+/* Hollow Anchors */
+.bg-anchor {
+  position: absolute;
+  font-size: clamp(10rem, 25vw, 25rem);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(139, 84, 255, 0.06);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.05em;
+  transform: translateY(var(--scroll-y, 0px));
+  transition: transform 0.1s linear;
 }
 
 .signal-canvas {
@@ -800,6 +863,88 @@ main {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+/* 3D Flip Card Architecture */
+.flip-card {
+  perspective: 1000px;
+  padding: 0 !important; /* Remove padding to let inner handle it */
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+}
+
+.flip-card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 24px;
+  border: 1px solid var(--line-soft);
+  background:
+    radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 84, 255, 0.12), transparent 40%),
+    linear-gradient(135deg, rgba(139, 84, 255, 0.15), transparent 33%),
+    var(--panel);
+  backdrop-filter: blur(18px);
+  clip-path: polygon(18px 0, calc(100% - 22px) 0, 100% 22px, 100% calc(100% - 22px), calc(100% - 22px) 100%, 18px 100%, 0 calc(100% - 18px), 0 18px);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.08), 0 0 28px rgba(139, 84, 255, 0.18);
+}
+
+.card-front {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-front > *, .card-back > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 229, 255, 0.12), transparent 40%),
+    var(--panel-strong);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.card-back h3 {
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+
+.card-back p {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
 .hud-card::before,
 .glass-card::before,
 .project-card::before,
@@ -871,7 +1016,19 @@ main {
   text-align: center;
   padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.mini-stats.is-visible div {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mini-stats.is-visible div:nth-child(1) { transition-delay: 0.2s; }
+.mini-stats.is-visible div:nth-child(2) { transition-delay: 0.4s; }
+.mini-stats.is-visible div:nth-child(3) { transition-delay: 0.6s; }
 
 .mini-stats strong {
   margin: 0;

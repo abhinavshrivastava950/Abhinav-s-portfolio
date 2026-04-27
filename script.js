@@ -277,16 +277,17 @@ document.addEventListener("DOMContentLoaded", fetchGitHubRepos);
 
 // Advanced Custom Animations
 
-// 1. Magnetic Trailing Cursor
+// 1. Cinematic Cursor Follower
 if (!reducedMotion && window.innerWidth > 760) {
-  const cursor = document.createElement("div");
-  cursor.className = "custom-cursor";
-  document.body.appendChild(cursor);
+  const cursorDot = document.getElementById("cursor-dot");
+  const cursorRing = document.getElementById("cursor-ring");
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
-  let cursorX = mouseX;
-  let cursorY = mouseY;
+  let dotX = mouseX;
+  let dotY = mouseY;
+  let ringX = mouseX;
+  let ringY = mouseY;
 
   window.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
@@ -294,19 +295,28 @@ if (!reducedMotion && window.innerWidth > 760) {
   });
 
   const updateCursor = () => {
-    const dx = mouseX - cursorX;
-    const dy = mouseY - cursorY;
-    cursorX += dx * 0.15;
-    cursorY += dy * 0.15;
-    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+    dotX += (mouseX - dotX) * 0.5;
+    dotY += (mouseY - dotY) * 0.5;
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    
+    if (cursorDot && cursorRing) {
+      cursorDot.style.transform = `translate(calc(-50% + ${dotX}px), calc(-50% + ${dotY}px))`;
+      cursorRing.style.transform = `translate(calc(-50% + ${ringX}px), calc(-50% + ${ringY}px))`;
+    }
     requestAnimationFrame(updateCursor);
   };
   requestAnimationFrame(updateCursor);
 
-  // Expand cursor on hoverable elements
-  document.querySelectorAll("a, button, .magnetic").forEach(el => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+  document.querySelectorAll("a, button, .magnetic, .flip-card").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      cursorDot?.classList.add("hovered");
+      cursorRing?.classList.add("hovered");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursorDot?.classList.remove("hovered");
+      cursorRing?.classList.remove("hovered");
+    });
   });
 }
 
@@ -320,6 +330,9 @@ window.addEventListener("scroll", () => {
   if (scrollProgressBar) {
     scrollProgressBar.style.width = scrollPercent + "%";
   }
+
+  // Parallax Anchors
+  document.documentElement.style.setProperty("--scroll-y", `${scrollTop * 0.15}px`);
 
   // Portrait Parallax
   if (!reducedMotion && poster) {

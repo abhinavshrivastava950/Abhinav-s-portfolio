@@ -13,6 +13,12 @@
     <canvas class="signal-canvas" aria-hidden="true"></canvas>
     <div class="background-depth" aria-hidden="true"></div>
     <div class="noise" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+    <div class="bg-anchor" aria-hidden="true" style="top: 15vh; left: -5vw;">01</div>
+    <div class="bg-anchor" aria-hidden="true" style="top: 120vh; right: -5vw;">02</div>
+    <div class="bg-anchor" aria-hidden="true" style="top: 250vh; left: -2vw;">03</div>
+    
     <div class="boot" data-boot aria-hidden="true">
       <div class="boot-box">
         <span>INITIALIZING ABHINAV.OS</span>
@@ -160,30 +166,62 @@
           <h2>Products, experiments, and shipped systems.</h2>
         </div>
         <div class="project-wall">
-          <article class="project-card active" data-reveal>
-            <span>WARFRONT</span>
-            <h3>Real-time Conflict Intelligence</h3>
-            <p>Node.js, MongoDB, Leaflet.js, 12+ sources, multi-LLM fallback, live news, AI analysis, airspace and market signals.</p>
-            <a href="https://warfront.live" target="_blank" rel="noreferrer">Launch</a>
+          <article class="project-card flip-card active" data-reveal>
+            <div class="card-inner">
+              <div class="card-front">
+                <span>WARFRONT</span>
+                <h3>Real-time Conflict Intelligence</h3>
+                <p>Node.js, MongoDB, Leaflet.js, 12+ sources, multi-LLM fallback, live news, AI analysis, airspace and market signals.</p>
+                <a href="https://warfront.live" target="_blank" rel="noreferrer">Launch</a>
+              </div>
+              <div class="card-back">
+                <h3>Warfront Live</h3>
+                <p>Scaled to 20k+ active users globally across 140+ countries. Processing real-time OSINT feeds and satellite data.</p>
+              </div>
+            </div>
           </article>
-          <article class="project-card" data-reveal>
-            <span>GOV TECH</span>
-            <h3>LandWatch AI</h3>
-            <p>Satellite imagery analysis, computer vision, unauthorized construction detection, alerting, and compliance reporting.</p>
-            <a href="https://github.com/abhinavshrivastava950/LandWatch-AI" target="_blank" rel="noreferrer">Repo</a>
+          <article class="project-card flip-card" data-reveal>
+            <div class="card-inner">
+              <div class="card-front">
+                <span>GOV TECH</span>
+                <h3>LandWatch AI</h3>
+                <p>Satellite imagery analysis, computer vision, unauthorized construction detection, alerting, and compliance reporting.</p>
+                <a href="https://github.com/abhinavshrivastava950/LandWatch-AI" target="_blank" rel="noreferrer">Repo</a>
+              </div>
+              <div class="card-back">
+                <h3>Impact</h3>
+                <p>Geospatial monitoring system using Sentinel-2 imagery for CSIDC to detect encroachments. Reduces costs by 95%.</p>
+              </div>
+            </div>
           </article>
-          <article class="project-card" data-reveal>
-            <span>IIITNR</span>
-            <h3>Alumni Portal</h3>
-            <p>LinkedIn scraping pipeline, 500+ profiles, MongoDB Atlas Search, Redis caching, analytics, and admin workflows.</p>
-            <a href="https://github.com/TusharDarsena/alumni_management_02" target="_blank" rel="noreferrer">Repo</a>
+          <article class="project-card flip-card" data-reveal>
+            <div class="card-inner">
+              <div class="card-front">
+                <span>WEB3</span>
+                <h3>Heirloom Smart Wallet</h3>
+                <p>Web3 smart wallet with dead man's switch for asset inheritance using Rust + Stellar Soroban smart contracts.</p>
+                <a href="https://github.com/abhinavshrivastava950/Heirloom" target="_blank" rel="noreferrer">Repo</a>
+              </div>
+              <div class="card-back">
+                <h3>Architecture</h3>
+                <p>Securely holds crypto assets and assigns beneficiaries. If the owner fails to check in, the contract distributes assets.</p>
+              </div>
+            </div>
           </article>
-          <article class="project-card" data-reveal>
-            <span>MICROSOFT IMAGINE CUP</span>
-            <h3>VisionLink AI</h3>
-            <p>VisionLink AI - an AI-powered platform that helps doctors detect eye diseases before patients go blind.</p>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
-              <a href="https://drive.google.com/file/d/1aCxdyjoTacS8BSybxH_axnK3dX-27_-F/view?usp=sharing" target="_blank" rel="noreferrer">Demo Video</a>
+          <article class="project-card flip-card" data-reveal>
+            <div class="card-inner">
+              <div class="card-front">
+                <span>MICROSOFT IMAGINE CUP</span>
+                <h3>VisionLink AI</h3>
+                <p>VisionLink AI - an AI-powered platform that helps doctors detect eye diseases before patients go blind.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+                  <a href="https://drive.google.com/file/d/1aCxdyjoTacS8BSybxH_axnK3dX-27_-F/view?usp=sharing" target="_blank" rel="noreferrer">Demo Video</a>
+                </div>
+              </div>
+              <div class="card-back">
+                <h3>Vision</h3>
+                <p>AI-powered early eye disease screening platform. Officially submitted to Microsoft Imagine Cup 2026.</p>
+              </div>
             </div>
           </article>
           <article class="project-card" data-reveal>
