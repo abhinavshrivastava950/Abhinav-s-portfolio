@@ -866,24 +866,30 @@ main {
   min-height: 104px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 16px 8px;
+  padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .mini-stats strong {
-  margin: 0 0 4px 0;
+  margin: 0;
   color: #fff;
-  font-size: clamp(1.2rem, 5vw, 1.8rem);
-  line-height: 1;
+  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+  line-height: 1.1;
   white-space: nowrap;
 }
 
 .mini-stats span {
+  font-size: 0.82rem;
   color: var(--muted);
-  font-size: 0.76rem;
+  line-height: 1.4;
+  margin-top: 4px;
+  height: 2.8em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .ticker {
