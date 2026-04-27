@@ -135,8 +135,7 @@ canvas {
   pointer-events: none;
   user-select: none;
   letter-spacing: -0.05em;
-  transform: translateY(var(--scroll-y, 0px));
-  transition: transform 0.1s linear;
+  will-change: transform;
 }
 
 .signal-canvas {

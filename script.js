@@ -322,6 +322,8 @@ if (!reducedMotion && window.innerWidth > 760) {
 
 // Scroll Progress Bar & Parallax
 const scrollProgressBar = document.getElementById("scroll-progress-bar");
+const bgAnchors = document.querySelectorAll(".bg-anchor");
+
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
@@ -331,8 +333,13 @@ window.addEventListener("scroll", () => {
     scrollProgressBar.style.width = scrollPercent + "%";
   }
 
-  // Parallax Anchors
-  document.documentElement.style.setProperty("--scroll-y", `${scrollTop * 0.15}px`);
+  // Parallax Anchors (High Performance Direct DOM)
+  if (!reducedMotion) {
+    const anchorOffset = scrollTop * 0.15;
+    bgAnchors.forEach(anchor => {
+      anchor.style.transform = `translateY(${anchorOffset}px)`;
+    });
+  }
 
   // Portrait Parallax
   if (!reducedMotion && poster) {
