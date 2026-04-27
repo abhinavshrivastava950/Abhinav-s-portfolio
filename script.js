@@ -322,29 +322,28 @@ if (!reducedMotion && window.innerWidth > 760) {
 
 // Scroll Progress Bar & Parallax
 const scrollProgressBar = document.getElementById("scroll-progress-bar");
-const bgAnchors = document.querySelectorAll(".bg-anchor");
+let isScrolling = false;
 
 window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  
-  if (scrollProgressBar) {
-    scrollProgressBar.style.width = scrollPercent + "%";
-  }
+  if (!isScrolling) {
+    window.requestAnimationFrame(() => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      
+      if (scrollProgressBar) {
+        scrollProgressBar.style.width = scrollPercent + "%";
+      }
 
-  // Parallax Anchors (High Performance Direct DOM)
-  if (!reducedMotion) {
-    const anchorOffset = scrollTop * 0.15;
-    bgAnchors.forEach(anchor => {
-      anchor.style.transform = `translateY(${anchorOffset}px)`;
+      // Portrait Parallax
+      if (!reducedMotion && poster) {
+        const parallaxOffset = scrollTop * 0.15;
+        poster.style.transform = `rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(${parallaxOffset}px)`;
+      }
+      
+      isScrolling = false;
     });
-  }
-
-  // Portrait Parallax
-  if (!reducedMotion && poster) {
-    const parallaxOffset = scrollTop * 0.15;
-    poster.style.transform = `rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(${parallaxOffset}px)`;
+    isScrolling = true;
   }
 });
 
