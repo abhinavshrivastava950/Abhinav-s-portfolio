@@ -365,7 +365,7 @@ if (terminalInput && terminalBody) {
       
       switch (command) {
         case "help":
-          responseLine.innerHTML = "Available commands: <span class='highlight'>whoami</span>, <span class='highlight'>warfront</span>, <span class='highlight'>clear</span>, <span class='highlight'>contact</span>";
+          responseLine.innerHTML = "Available commands: <span class='highlight'>whoami</span>, <span class='highlight'>resume</span>, <span class='highlight'>warfront</span>, <span class='highlight'>clear</span>, <span class='highlight'>contact</span>";
           break;
         case "whoami":
           const whoamiResponses = [
@@ -375,6 +375,36 @@ if (terminalInput && terminalBody) {
             "SYNAPSE // EVOLVE. Entity recognized as a full-stack innovator operating at the intersection of AI, Web3, and Open Source."
           ];
           responseLine.innerHTML = whoamiResponses[Math.floor(Math.random() * whoamiResponses.length)];
+          break;
+        case "resume":
+          const resumeText = `
+<pre style="color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem; line-height: 1.4; margin-top: 10px; white-space: pre-wrap; word-break: break-word;">
+===================================================
+              ABHINAV SHRIVASTAVA                  
+===================================================
+ROLE:     AI & OSINT Architect | Full-Stack Builder
+LOCATION: Raipur, India
+EMAIL:    abhinavshrivastava950@gmail.com
+GITHUB:   github.com/abhinavshrivastava950
+---------------------------------------------------
+> EXPERIENCE
+  - Warfront.live (Founder & Lead Engineer)
+    Scaled to 20k+ MAU across 140+ countries.
+    Built live data pipelines & LLM analysis.
+  
+  - LandWatch AI (GovTech)
+    Satellite imagery analysis for CSIDC.
+    Reduced monitoring costs by 95%.
+---------------------------------------------------
+> SKILLS
+  Languages: JavaScript, Python, C++, Rust
+  Backend:   Node.js, Express, MongoDB, FastAPI
+  AI/ML:     OpenAI, Groq, Computer Vision, Agents
+---------------------------------------------------
+[SYSTEM]: Download full PDF <a href="assets/Abhinav-Shrivastava-Resume.pdf" target="_blank" style="color:#00e5ff;">here</a>.
+===================================================
+</pre>`;
+          responseLine.innerHTML = resumeText;
           break;
         case "warfront":
           responseLine.innerHTML = "Initializing Warfront.live connection... <a href='https://warfront.live' target='_blank' style='color:#00e5ff;'>[Click to Launch]</a>";
