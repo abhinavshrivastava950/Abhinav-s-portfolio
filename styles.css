@@ -1010,10 +1010,10 @@ main {
   min-height: 104px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding: 10px;
+  padding: 26px 10px 10px 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   opacity: 0;
   transform: translateY(16px);
@@ -1041,11 +1041,7 @@ main {
   font-size: 0.82rem;
   color: var(--muted);
   line-height: 1.4;
-  margin-top: 4px;
-  height: 2.8em;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  margin-top: 6px;
 }
 
 .ticker {
